@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 # Redirecting url after login and logout
 LOGIN_REDIRECT_URL='/login_success'
-LOGOUT_REDIRECT_URL='/logout'
+LOGOUT_REDIRECT_URL='/logout_view'
 
 # Email configurations default
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

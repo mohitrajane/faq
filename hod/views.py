@@ -2,13 +2,17 @@ import urllib
 import json
 
 from django.shortcuts import render,redirect
-from django.template import loader
+from django.template import loader,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import HOD,Question
 from django.utils import timezone
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import patch_cache_control,never_cache
+
+from .models import HOD,Question
 
 # Create your views here.
 def index(request):
@@ -54,19 +58,20 @@ def on_submit(request):
     else:
         messages.error(request,'Invalid reCATPCHA,Please try again')
     return HttpResponseRedirect('/')
-
+@never_cache
 def hod_view(request,hod_id):
     hod_obj=HOD.objects.get(branch_id=hod_id)
     query_hod=Question.objects.filter(branch_id=hod_obj)
     print('hod name:{}'.format(hod_obj.name))
     return render(request,'hod.html',{"queries":query_hod,"hod":hod_obj})
-
+@never_cache
 def login_success(request):
     b_id=HOD.objects.get(name=request.user).branch_id
     return HttpResponseRedirect('/hod/{}'.format(b_id))
-
-def logout(request):
-    return render(request,'registration/logout.html')
+@never_cache
+def logout_view(request):
+    logout(request)
+    return render(request,'registration/logout.html',context={})
 
 def del_item(request,hod_id,q_id):
     del_ele=Question.objects.get(pk=q_id)
