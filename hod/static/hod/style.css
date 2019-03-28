@@ -21,3 +21,10 @@
 .dept_choice > span{
     padding-right:35px !important;
 }
+#login{
+    border: solid 2px #9575cd;
+    color: whitesmoke;
+    margin-left: 5%;
+    margin-right: 60%;
+    border-radius: 40px;
+}
