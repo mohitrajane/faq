@@ -61,7 +61,20 @@
           <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#{{ query.pk }}">Reply</a></td>
           <td><a class="waves-effect waves-light btn red lighten-1"
               href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
-          <td><a class="waves-effect waves-light btn grey">Forward</a></td>
+          <form method="post" action="/forward_view">
+            <td> <button class='dropdown-trigger btn' href='#' type="submit" data-target='dropdown1'>Foward</button></td>
+            <input type="text" hidden value={{query.pk}}/>
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' name = "fowardtohod" class='dropdown-content'>
+              <li  value='1'>CSE </li>
+              <li  value='2'>CE  </li>
+              <li  value='3'>Public  </li>
+              <li  value='4'>EEE  </li>
+              <li  value='5'>EC  </li>
+              <li  value='6'>EIE  </li>
+              <li value='7'>ME</li>
+            </ul>
+          </form>
           </tr>
 
         <div id={{query.pk}} class="modal">
@@ -123,7 +136,9 @@
   <script>
     $(document).ready(function () {
       $('.modal').modal();
+       $('.dropdown-trigger').dropdown();
     });
+    
   </script>
 </body>
 

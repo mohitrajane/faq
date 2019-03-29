@@ -87,3 +87,7 @@ def send_query_response(request):
     val=send_mail(subject,body,'leomv3@gmail.com',[mail])
     print("mail send :),val{}".format(val))
     return HttpResponseRedirect('/hod/{}'.format(hod_id))
+
+def forward_view(request):
+    print(request)
+    return HttpResponseRedirect('/hod/{}'.format(request.POST.get('fowardtohod')))
