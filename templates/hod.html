@@ -61,21 +61,18 @@
           <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#{{ query.pk }}">Reply</a></td>
           <td><a class="waves-effect waves-light btn red lighten-1"
               href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
-          <form method="post" action="/forward_view">
-            <td> <button class='dropdown-trigger btn' href='#' type="submit" data-target='dropdown1'>Foward</button></td>
-            <input type="text" hidden value={{query.pk}}/>
-            <!-- Dropdown Structure -->
-            <ul id='dropdown1' name = "fowardtohod" class='dropdown-content'>
-              <li  value='1'>CSE </li>
-              <li  value='2'>CE  </li>
-              <li  value='3'>Public  </li>
-              <li  value='4'>EEE  </li>
-              <li  value='5'>EC  </li>
-              <li  value='6'>EIE  </li>
-              <li value='7'>ME</li>
-            </ul>
-          </form>
-          </tr>
+          <td> <button class='dropdown-trigger btn' data-target='dropdown1'>Foward</button></td>
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' name="fowardtohod" class='dropdown-content'>
+            <li value='1'><a href="{% url 'forward_view' query.pk '1' query.branch_id.branch_id %}">CSE</a></li>
+            <li value='2'><a href="{% url 'forward_view' query.pk '2' query.branch_id.branch_id %}">CE</a></li>
+            <li value='3'><a href="{% url 'forward_view' query.pk '3' query.branch_id.branch_id %}">Public</a></li>
+            <li value='4'><a href="{% url 'forward_view' query.pk '4' query.branch_id.branch_id %}">EEE</a></li>
+            <li value='5'><a href="{% url 'forward_view' query.pk '5' query.branch_id.branch_id %}">EC</a></li>
+            <li value='6'><a href="{% url 'forward_view' query.pk '6' query.branch_id.branch_id %}">EIE</a></li>
+            <li value='7'><a href="{% url 'forward_view' query.pk '7' query.branch_id.branch_id %}">ME</a></li>
+          </ul>
+        </tr>
 
         <div id={{query.pk}} class="modal">
           <div class="modal-content">
@@ -100,8 +97,8 @@
               </div>
           </div>
           <div class="modal-footer">
-            <button class="waves-effect waves-light btn" type="submit"><span
-                style="padding-bottom:2rem;">Send</span> <i class="material-icons">arrow_forward</i>
+            <button class="waves-effect waves-light btn" type="submit"><span style="padding-bottom:2rem;">Send</span> <i
+                class="material-icons">arrow_forward</i>
             </button>
           </div>
           </form>
@@ -136,9 +133,8 @@
   <script>
     $(document).ready(function () {
       $('.modal').modal();
-       $('.dropdown-trigger').dropdown();
+      $('.dropdown-trigger').dropdown();
     });
-    
   </script>
 </body>
 

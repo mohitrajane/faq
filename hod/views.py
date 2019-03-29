@@ -72,12 +72,12 @@ def login_success(request):
 def logout_view(request):
     logout(request)
     return render(request,'registration/logout.html',context={})
-
+@login_required
 def del_item(request,hod_id,q_id):
     del_ele=Question.objects.get(pk=q_id)
     del_ele.delete()
     return HttpResponseRedirect('/hod/{}'.format(hod_id))
-
+@login_required
 def send_query_response(request):
     hod_id = request.POST.get("hod_id","")
     mail = request.POST.get("email","")
@@ -87,7 +87,8 @@ def send_query_response(request):
     val=send_mail(subject,body,'leomv3@gmail.com',[mail])
     print("mail send :),val{}".format(val))
     return HttpResponseRedirect('/hod/{}'.format(hod_id))
-
-def forward_view(request):
-    print(request)
-    return HttpResponseRedirect('/hod/{}'.format(request.POST.get('fowardtohod')))
+@login_required
+def forward_view(request,q_id,forward_to,forward_f):
+    print('\nq_id:{} forward_to:{} forward_f:{}'.format(q_id,forward_to,forward_f))
+    Question.objects.filter(pk=q_id).update(branch_id=HOD.objects.get(branch_id=forward_to))
+    return HttpResponseRedirect('/hod/{}'.format(forward_f))

@@ -11,5 +11,5 @@ urlpatterns=[
     path('accounts/', include('django.contrib.auth.urls')),
     path('hod/<int:hod_id>/<int:q_id>/',views.del_item,name="del_item"),
     path('send_query_response',views.send_query_response,name="send_query_response"),
-    path('forward_view',views.forward_view,name="forward_view")
+    path('forward_view/<int:q_id>/<int:forward_to>/<int:forward_f>',views.forward_view,name="forward_view")
 ]
