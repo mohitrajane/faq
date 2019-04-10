@@ -18,7 +18,6 @@
 
     <!-- Google reCaptchav3 -->
     <script src='https://www.google.com/recaptcha/api.js?render=6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es'></script>
-
 </head>
 
 <body>
@@ -49,51 +48,30 @@
 
         <form class="query-form" id="form" method="POST" action="/success">
             {% csrf_token%}
+
             <div class="row">
-                <p>
-                    <label>
-                        <input name="choice" style="padding-right:35px;" type="radio" value="public" checked />
-                        <span>Public</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="cse" />
-                        <span>CSE</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="me" />
-                        <span>ME</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="eie" />
-                        <span>EIE</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="eee" />
-                        <span>EEE</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="ec" />
-                        <span>EC</span>
-                    </label>
-                    <label>
-                        <input name="choice" class="dept_choice" type="radio" value="ce" />
-                        <span>CE</span>
-                    </label>
-                </p>
-            </div>
-            <div class="row">
-                <div class="row">
                     <div class="input-field col s12">
                         <textarea id="query-textarea" name="query-textarea" value="" class="materialize-textarea"
                             minlength="10" required></textarea>
                         <label for="query-textarea">Query</label>
                     </div>
-                </div>
             </div>
 
 
             <div class="row">
-                <div class="input-field col offset-s3 s5">
+                    <div class="s4 col input-field offset-s1 offset-s2">
+                            <select>
+                                <option value="public">Public </option>
+                                <option value="cse">CSE</option>
+                                <option value="me">ME</option>
+                                <option value="eie">EIE</option>
+                                <option value="eee">EEE</option>
+                                <option value="ec">EC</option>
+                                <option value="ce">CE</option>
+                            </select>
+                            <label>Branch</label>
+                        </div>
+                <div class="input-field col s4">
                     <input id="email" type="email" class="validate" name="mail_id" required>
                     <label for="email">Email</label>
                 </div>
@@ -132,6 +110,9 @@
                 document.getElementById("form").appendChild(input);
             });
     });
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
 </script>
 
 </html>
