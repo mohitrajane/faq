@@ -110,10 +110,30 @@
             <!-- <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> -->
         </form>
     </div>
+    
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- recaptcha JS -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <!-- Toast -->
+    <script>
+    var stats= "{{ success }}";
+    console.log(  stats );
+    </script>
+    
+    {% if status == "success" %}
+    <script>
+            M.toast({html: 'Query Response recorded'})
+      </script>
+    {% endif %}
+
+    {% if status == "failed" %}
+    <script>
+            M.toast({html: 'Query response not recorded'})
+      </script>
+    {% endif %}
+   
 
 </body>
 <script>
