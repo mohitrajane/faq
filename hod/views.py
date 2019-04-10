@@ -55,9 +55,10 @@ def on_submit(request):
         print("branch:{},query:{},time:{},mail{}".format(hod_object.name,query,timezone.now(),mail))
         ques = Question(branch_id=hod_object,query=query,query_date=timezone.now(),mail_id=mail)
         ques.save()
+        return render(request,'index.html',{'status':"success"})
     else:
         messages.error(request,'Invalid reCATPCHA,Please try again')
-    return HttpResponseRedirect('/')
+        return render(request,'index.html',{'status':"failed"})
 @never_cache
 def hod_view(request,hod_id):
     hod_obj=HOD.objects.get(branch_id=hod_id)
